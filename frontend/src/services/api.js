@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://nivant-backend.onrender.com/api',
     timeout: 30000, // Increase timeout for file uploads
 });
 
