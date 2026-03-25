@@ -59,11 +59,11 @@ const ItemList = () => {
                 {items.map(item => (
                     <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
                         {item.image && (
-                            <img
-                                src={`http://localhost:5001${item.image}`}
-                                alt={item.name}
-                                className="w-full h-48 object-cover"
-                            />
+                          <img
+  src={item.image}
+  alt={item.name}
+  className="w-full h-48 object-cover"
+/>
                         )}
                         <div className="p-4">
                             <div className="flex justify-between items-start mb-2">
