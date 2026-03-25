@@ -71,6 +71,7 @@ export const updateItem = (id, formData) => API.put(`/items/${id}`, formData, {
 export const deleteItem = (id) => API.delete(`/items/${id}`);
 
 export const fetchOrders = () => API.get('/orders');
+export const fetchItemById = (id) => API.get(`/items/${id}`);
 export const fetchPendingOrders = () => API.get('/orders/pending');
 export const createOrder = (orderData) => API.post('/orders', orderData);
 export const updateOrderStatus = (id, data) => {
