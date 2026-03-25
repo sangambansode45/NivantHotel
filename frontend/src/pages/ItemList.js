@@ -60,7 +60,7 @@ const ItemList = () => {
                     <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
                         {item.image && (
                             <img
-                                src={`http://localhost:5000${item.image}`}
+                                src={`http://localhost:5001${item.image}`}
                                 alt={item.name}
                                 className="w-full h-48 object-cover"
                             />

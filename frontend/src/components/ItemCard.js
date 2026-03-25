@@ -10,7 +10,7 @@ const ItemCard = ({ item, onSelect, isSelected }) => {
         >
             {item.image && (
                 <img 
-                    src={`http://localhost:5000${item.image}`} 
+                    src={`http://localhost:5001${item.image}`} 
                     alt={item.name}
                     className="w-full h-32 object-cover rounded mb-2"
                 />

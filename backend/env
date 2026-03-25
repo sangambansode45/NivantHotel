@@ -1,6 +1,28 @@
+# DB_HOST=turntable.proxy.rlwy.net
+# DB_PORT=57604
+# DB_USER=root
+# DB_PASSWORD=OXAKaQZsLgFmcUNCgqKUObpvjLSHeqnh
+# DB_NAME=railway
+# JWT_SECRET=your_super_secret_jwt_key_here
+# CLOUD_NAME=dep3dmoib
+# API_KEY= 878459711353124
+# API_SECRET=O2npIAe46eKpKy5x5j8LDgfg8eg
+
+
+# Database
 DB_HOST=turntable.proxy.rlwy.net
 DB_PORT=57604
 DB_USER=root
 DB_PASSWORD=OXAKaQZsLgFmcUNCgqKUObpvjLSHeqnh
 DB_NAME=railway
+
+# JWT
 JWT_SECRET=your_super_secret_jwt_key_here
+
+# Cloudinary
+CLOUD_NAME=dep3dmoib
+API_KEY=878459711353124
+API_SECRET=O2npIAe46eKpKy5x5j8LDgfg8eg
+
+# Server Port
+PORT=5001
