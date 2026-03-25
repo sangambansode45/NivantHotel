@@ -2,82 +2,57 @@ import axios from 'axios';
 
 const API = axios.create({
     baseURL: 'https://nivant-backend.onrender.com/api',
-    timeout: 30000, // Increase timeout for file uploads
+    timeout: 60000, // increased timeout
 });
 
-// Add request interceptor
+// 🔐 REQUEST INTERCEPTOR
 API.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
+
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
             config.headers['x-auth-token'] = token;
         }
-        
-        // Don't set Content-Type for multipart/form-data
-        // Let the browser set it with the correct boundary
+
+        // 🔥 IMPORTANT: let browser handle FormData
         if (config.data instanceof FormData) {
             delete config.headers['Content-Type'];
         }
-        
+
         console.log('Making request:', {
             url: config.url,
             method: config.method,
             headers: config.headers,
             data: config.data instanceof FormData ? 'FormData' : config.data
         });
-        
+
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
-// Add response interceptor
+// 🔁 RESPONSE INTERCEPTOR
 API.interceptors.response.use(
     (response) => {
-        console.log('Response:', {
-            url: response.config.url,
-            status: response.status,
-            data: response.data
-        });
+        console.log('Response:', response.data);
         return response;
     },
     (error) => {
-        console.error('Response error:', {
-            url: error.config?.url,
-            message: error.message,
-            response: error.response?.data
-        });
+        console.error('Response error:', error.response?.data);
         return Promise.reject(error);
     }
 );
 
-export const login = (formData) => API.post('/auth/login', formData);
+// 🔐 AUTH
+export const login = (data) => API.post('/auth/login', data);
 export const verifyToken = () => API.get('/auth/verify');
 
+// 🍽 ITEMS
 export const fetchItems = () => API.get('/items');
-export const createItem = (formData) => API.post('/items', formData, {
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    }
-});
-export const updateItem = (id, formData) => API.put(`/items/${id}`, formData, {
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    }
-});
-export const deleteItem = (id) => API.delete(`/items/${id}`);
-
-export const fetchOrders = () => API.get('/orders');
 export const fetchItemById = (id) => API.get(`/items/${id}`);
-export const fetchPendingOrders = () => API.get('/orders/pending');
-export const createOrder = (orderData) => API.post('/orders', orderData);
-export const updateOrderStatus = (id, data) => {
-    console.log('API call - updateOrderStatus:', { id, data });
-    return API.put(`/orders/${id}/status`, data);
-};export const updateOrder = (id, orderData) => API.put(`/orders/${id}`, orderData);
-export const generateBill = (id, discount) => API.post(`/orders/${id}/bill`, { discount });
+export const createItem = (formData) => API.post('/items', formData); // ✅ FIXED
+export const updateItem = (id, formData) => API.put(`/items/${id}`, formData); // ✅ FIXED
+export const deleteItem = (id) => API.delete(`/items/${id}`);
 
 export default API;
